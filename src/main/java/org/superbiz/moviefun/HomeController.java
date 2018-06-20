@@ -33,13 +33,17 @@ public class HomeController {
 
     @GetMapping("/setup")
     public String setup(Map<String, Object> model) {
-        for (Movie movie : movieFixtures.load()) {
-            moviesBean.addMovie(movie);
+
+        if(moviesBean.countAll() <= 0){
+            for (Movie movie : movieFixtures.load()) {
+                moviesBean.addMovie(movie);
+            }
+
+            for (Album album : albumFixtures.load()) {
+                albumsBean.addAlbum(album);
+            }
         }
 
-        for (Album album : albumFixtures.load()) {
-            albumsBean.addAlbum(album);
-        }
 
         model.put("movies", moviesBean.getMovies());
         model.put("albums", albumsBean.getAlbums());

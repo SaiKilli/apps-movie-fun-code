@@ -1,0 +1,7 @@
+applications:
+- name: moviefun
+  path: ./target/moviefun.war
+  random-route: true
+  services:
+  - movies-mysql
+  - moviefun-s3-service
